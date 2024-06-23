@@ -1,6 +1,5 @@
 // authController.js
 
-const fetch = require('node-fetch');
 const Customer = require('../models/customerModel');
 
 const loginCustomer = async (req, res) => {
