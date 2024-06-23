@@ -2,9 +2,12 @@
     "build": {
         "env": {
             "CI": "false"
-        }
-    },
-    "scripts": {
-        "build": "chmod +x node_modules/.bin/react-scripts && npm run build"
+        },
+        "commands": [
+            {
+                "cmd": "chmod +x node_modules/.bin/react-scripts",
+                "cmd": "npm run build"
+            }
+        ]
     }
 }
