@@ -7,12 +7,14 @@ const resetPasswordRoutes = require('./routes/resetPassword')
 const productRoutes = require('./routes/product')
 const addressRoutes = require('./routes/addressRoutes')
 const path = require('path');
-
-
+const cors = require('cors'); // CORS paketini ekleyin
 
 const app = express()
 
-//midlewaree
+// CORS Middleware
+app.use(cors())
+
+// Middleware
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
@@ -22,25 +24,21 @@ app.use((req, res, next) => {
 // Statik dosya servisi
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-//Routes
+// Routes
 app.use('/api/customers', customerRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/resetpassword', resetPasswordRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/address', addressRoutes)
-// Değişiklik burada, dosya ismi doğru olmalı
 
-
-//Connect to db
+// Connect to db
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log('Connected to db')
-            console.log('Listining on port' + process.env.PORT)
+            console.log('Listening on port ' + process.env.PORT)
         })
     })
     .catch((error) => {
         console.log(error)
     })
-
-

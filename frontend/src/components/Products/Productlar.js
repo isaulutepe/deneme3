@@ -16,7 +16,8 @@ const Productlar = () => {
     const fetchProducts = async (filters = {}) => {
         setLoading(true);
         const queryString = new URLSearchParams(filters).toString();
-        const response = await fetch(`/api/products?${queryString}`);
+        const apiUrl = process.env.REACT_APP_API_URL; // Çevresel değişkeni kullanın
+        const response = await fetch(`${apiUrl}/products?${queryString}`);
         const data = await response.json();
 
         if (response.ok) {
