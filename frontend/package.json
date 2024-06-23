@@ -1,5 +1,5 @@
 {
-  "proxy": "deneme3-client.vercel.app",
+  "proxy": "http://deneme3-client.vercel.app",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
