@@ -13,11 +13,12 @@ const Details = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { addToCart, notification } = useCart();
+    const apiUrl = process.env.REACT_APP_API_URL; // Çevresel değişkeni kullanın
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`/api/products/${id}`);
+                const response = await fetch(`${apiUrl}/products/${id}`);
                 if (!response.ok) {
                     throw new Error('Ürün bulunamadı.');
                 }

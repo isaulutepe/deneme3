@@ -16,8 +16,8 @@ const Productlar = () => {
     const fetchProducts = async (filters = {}) => {
         setLoading(true);
         const queryString = new URLSearchParams(filters).toString();
-        const apiUrl = process.env.REACT_APP_API_URL; // Çevresel değişkeni kullanın
-        const response = await fetch(`${apiUrl}/products?${queryString}`);
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await fetch(`${apiUrl}/api/products?${queryString}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -49,7 +49,7 @@ const Productlar = () => {
                         {products.map((product) => (
                             <div className="card" key={product._id}>
                                 <Link to={`/product/${product._id}`}>
-                                    <img src={product.image} alt="" />
+                                    <img src={`${process.env.REACT_APP_API_URL}/${product.image}`} alt="" />
                                 </Link>
                                 <div className="content">
                                     <h3>
