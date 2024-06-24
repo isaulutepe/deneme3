@@ -18,7 +18,7 @@ const Details = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`${apiUrl}/products/${id}`);
+                const response = await fetch(`${apiUrl}/api/products/${id}`);
                 if (!response.ok) {
                     throw new Error('Ürün bulunamadı.');
                 }
@@ -33,7 +33,7 @@ const Details = () => {
         };
 
         fetchProduct();
-    }, [id]);
+    }, [id, apiUrl]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -90,7 +90,6 @@ const Details = () => {
         }
     ];
 
-
     return (
         <>
             <Navbar />
@@ -98,7 +97,7 @@ const Details = () => {
                 <div className="details">
                     <div className="image-container">
                         <img
-                            src={`/${product.image}`}
+                            src={`${apiUrl}/${product.image}`}
                             alt={product.title}
                             onError={(e) => {
                                 console.error("Error loading image:", e.target.src);

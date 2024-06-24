@@ -17,9 +17,10 @@ function LoginModal({ onClose }) {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

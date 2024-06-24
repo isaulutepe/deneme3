@@ -27,13 +27,14 @@ function Basket() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
+  const apiUrl = process.env.REACT_APP_API_URL; // Çevresel değişkeni kullanın
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const productDetails = await Promise.all(
           cart.map(async (id) => {
-            const response = await fetch(`/api/products/${id}`);
+            const response = await fetch(`${apiUrl}/api/products/${id}`);
             if (!response.ok) {
               throw new Error('Ürün bulunamadı.');
             }
@@ -58,7 +59,7 @@ function Basket() {
     } else {
       setLoading(false);
     }
-  }, [cart]);
+  }, [cart, apiUrl]);
 
   if (loading) {
     return <div>Yükleniyor...</div>;
@@ -115,7 +116,7 @@ function Basket() {
                     <img
                       className="basket-img"
                       style={{ width: '100px', height: '100px' }}
-                      src={`/${product.image}`}
+                      src={`${apiUrl}/${product.image}`}
                       alt={product.title}
                       onError={(e) => {
                         console.error("Error loading image:", e.target.src);

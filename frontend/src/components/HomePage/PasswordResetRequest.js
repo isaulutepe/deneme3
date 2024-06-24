@@ -10,13 +10,15 @@ function PasswordResetRequest() {
   const [showResetForm, setShowResetForm] = useState(false); // Şifre sıfırlama formunu göstermek için durum
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const enteredEmail = email.trim();
 
     try {
-      const response = await fetch('/api/resetpassword/check', {
+      const response = await fetch(`${apiUrl}/api/resetpassword/check`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,8 +44,10 @@ function PasswordResetRequest() {
   };
 
   const handleResetPassword = async (newPassword) => {
+    const apiUrl = process.env.REACT_APP_API_URL;
+
     try {
-      const response = await fetch('/api/resetpassword/update', {
+      const response = await fetch(`${apiUrl}/api/resetpassword/update`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

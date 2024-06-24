@@ -28,7 +28,8 @@ const Login = () => {
     }
 
     const customer = { name, surname, email, password };
-    const response = await fetch('/api/customers', {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const response = await fetch(`${apiUrl}/api/customers`, {
       method: 'POST',
       body: JSON.stringify(customer),
       headers: {

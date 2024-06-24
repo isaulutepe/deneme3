@@ -7,14 +7,14 @@ const resetPasswordRoutes = require('./routes/resetPassword');
 const productRoutes = require('./routes/product');
 const addressRoutes = require('./routes/addressRoutes');
 const path = require('path');
-const cors = require('cors'); 
+const cors = require('cors');
 
 const app = express();
 
 // CORS Middleware
 app.use(cors({
     origin: '*', // Tüm kaynaklardan gelen isteklere izin verin. Güvenlik amacıyla bunu sınırlamanız önerilir.
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
